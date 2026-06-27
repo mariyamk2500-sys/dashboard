@@ -3,34 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eX | Command Center</title>
+    <title>eX | Extension Engineering</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-slate-900 text-white font-sans">
-    <div class="min-h-screen flex flex-col items-center justify-center p-6">
-        <h1 class="text-6xl font-bold mb-4 text-blue-500 tracking-tight">eX</h1>
-        <p class="text-xl text-slate-400 mb-12 uppercase tracking-widest">Professional Workflow & Automation Hub</p>
+    <style>
+        .gold-text { color: #F4C300; }
+        .bg-gold { background-color: #F4C300; }
+        .hover-gold:hover { background-color: #d4a700; }
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
-            <!-- Automation Suite -->
-            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-blue-500 transition">
-                <h2 class="text-2xl font-semibold mb-2">Automation Suite</h2>
-                <p class="text-slate-400 mb-4">Streamline your business with custom n8n workflows.</p>
-                <a href="mailto:mariyamk2500@gmail.com" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Launch Workflow</a>
+        .logo-font {
+            font-family: 'Arial Black', Gadget, sans-serif;
+            letter-spacing: -0.05em;
+        }
+        
+        .tagline-style {
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            font-weight: 300;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans">
+    <div class="min-h-screen flex flex-col items-center justify-center p-6">
+        <!-- Optimized Logo Size -->
+        <h1 class="text-[10rem] logo-font font-black mb-0 italic gold-text leading-none select-none">eX</h1>
+        
+        <!-- Premium Tagline -->
+        <p class="text-lg mb-16 tagline-style">Precision Engineering | Extension Architecture</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
+            
+            <div class="bg-slate-900 p-8 rounded-lg border border-gold hover:border-white transition">
+                <h2 class="text-3xl font-bold mb-4 gold-text">Extension Engineering</h2>
+                <p class="text-gray-300 mb-6 leading-relaxed">Architecting precision-driven extensions to redefine your workflow ecosystem. From concept to deployment, I build seamless bridges for your digital stack.</p>
+                <a href="mailto:mariyamk2500@gmail.com" class="inline-block bg-gold text-black font-bold py-3 px-6 rounded hover-gold transition">Inquire Now</a>
             </div>
 
-            <!-- EdTech Tools -->
-            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-blue-500 transition">
-                <h2 class="text-2xl font-semibold mb-2">EdTech Solutions</h2>
-                <p class="text-slate-400 mb-4">Scalable Moodle LMS & SCORM integration.</p>
-                <a href="portfolio.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View Services</a>
-            </div>
-
-            <!-- eXtract Clip -->
-            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-blue-500 transition">
-                <h2 class="text-2xl font-semibold mb-2">eXtract Clip</h2>
-                <p class="text-slate-400 mb-4">Professional video repurposing tool by eX.</p>
-                <a href="extract-clip.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Open Tool</a>
+            <div class="bg-slate-900 p-8 rounded-lg border border-gold hover:border-white transition">
+                <h2 class="text-3xl font-bold mb-4 gold-text">System Solutions</h2>
+                <p class="text-gray-300 mb-6 leading-relaxed">Scalable Moodle LMS integration and custom n8n automation workflows designed for high-impact performance and efficiency.</p>
+                <a href="portfolio.html" class="inline-block bg-gold text-black font-bold py-3 px-6 rounded hover-gold transition">View Solutions</a>
             </div>
         </div>
     </div>
