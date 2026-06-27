@@ -3,21 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eX | Professional Workflow & Automation Hub</title>
+    <title>eX | Extension Architecture Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@700&display=swap" rel="stylesheet">
     <style>
-        .premium-text-color { color: #F2C94C; } /* Matching yellow shade */
-        .premium-bg-color { background-color: #F2C94C; } /* Matching yellow shade */
-        .hover-gold:hover { background-color: #fbd66e; }
-        .bg-navy-dark { background-color: #0d121f; }
-        .bg-card { background-color: #1a2236; }
-        .text-blue-grey { color: #a1b0cb; }
-
-        .logo-font {
-            font-family: 'Garamond', serif;
-            font-weight: 700;
-        }
+        .premium-text-color { color: #F4C300; }
+        .premium-bg-color { background-color: #F4C300; }
+        .hover-gold:hover { background-color: #e6b800; }
+        .bg-navy-dark { background-color: #0c121e; }
+        .bg-card { background-color: #171d2b; }
+        
         .tagline-font {
             letter-spacing: 0.15em;
             text-transform: uppercase;
@@ -28,72 +22,58 @@
 <body class="bg-navy-dark text-white font-sans antialiased">
     <div class="min-h-screen flex flex-col p-6 md:p-10">
         
-        <!-- Navigation Header -->
-        <header class="flex justify-end space-x-6 text-blue-grey text-lg tagline-font mb-12">
-            <a href="#home" class="hover:text-white">Home</a>
-            <a href="#solutions" class="hover:text-white">Solutions</a>
-            <a href="#anriens" class="hover:text-white">Anriens</a>
-            <a href="#contact" class="hover:text-white">Contact</a>
+        <!-- Header -->
+        <header class="flex justify-end space-x-6 text-gray-400 text-lg tagline-font mb-16">
+            <a href="#" class="hover:text-white">Home</a>
+            <a href="#" class="hover:text-white">Extensions</a>
+            <a href="#" class="hover:text-white">Portfolio</a>
+            <a href="#" class="hover:text-white">Contact</a>
         </header>
 
-        <!-- Centered Logo and Tagline -->
-        <main class="flex-grow flex flex-col items-center justify-center space-y-12 mb-16">
+        <!-- Main Logo Area (Matches Screenshot_22.png) -->
+        <main class="flex-grow flex flex-col items-center space-y-16 mb-20">
             
             <div class="flex flex-col items-center space-y-2">
-                <!-- Large Logo in New Color -->
-                <h1 class="text-[14rem] logo-font leading-none premium-text-color select-none">eX</h1>
-                
-                <!-- Tagline in Original Gold Color -->
-                <p class="text-2xl tagline-font premium-text-color text-center max-w-4xl">
-                    Professional Workflow & Automation Hub
-                </p>
+                <h1 class="text-[12rem] font-bold premium-text-color select-none">eX</h1>
+                <p class="text-2xl tagline-font premium-text-color">Precision Engineering | Extension Architecture</p>
             </div>
 
-            <!-- Service Cards Grid -->
+            <!-- Redesigned Service Grid with 3 Extension Focused Options -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-7xl px-4">
                 
-                <!-- Automation Suite Card -->
-                <div class="bg-card p-10 rounded-xl space-y-4 shadow-2xl relative overflow-hidden">
-                    <h2 class="text-3xl font-bold premium-text-color">Automation Suite</h2>
-                    <p class="text-blue-grey leading-relaxed text-lg">Streamline your business with custom n8n workflows.</p>
+                <!-- Card 1: Precision Engineering -->
+                <div class="bg-card p-10 rounded-xl space-y-4 shadow-2xl relative">
+                    <h2 class="text-3xl font-bold premium-text-color">Precision Engineering</h2>
+                    <p class="text-gray-300 leading-relaxed text-lg">Architecting precision-driven extensions to redefine your workflow ecosystem. From concept to deployment, I build seamless bridges for your digital stack.</p>
                     <div class="pt-4">
-                        <button class="premium-bg-color text-black font-bold py-3 px-8 rounded-md text-lg hover-gold transition-all duration-300">
-                            Launch Workflow
-                        </button>
+                        <button class="premium-bg-color text-black font-bold py-3 px-8 rounded-md text-lg hover-gold transition">Inquire Now</button>
                     </div>
                 </div>
 
-                <!-- EdTech Solutions Card -->
-                <div class="bg-card p-10 rounded-xl space-y-4 shadow-2xl relative overflow-hidden">
-                    <h2 class="text-3xl font-bold premium-text-color">EdTech Solutions</h2>
-                    <p class="text-blue-grey leading-relaxed text-lg">Scalable Moodle LMS & SCORM integration.</p>
+                <!-- Card 2: Custom Tools -->
+                <div class="bg-card p-10 rounded-xl space-y-4 shadow-2xl relative">
+                    <h2 class="text-3xl font-bold premium-text-color">Custom Tools</h2>
+                    <p class="text-gray-300 leading-relaxed text-lg">Developing bespoke scripts, browser extensions, and utility apps that automate your specific bottlenecks and boost productivity.</p>
                     <div class="pt-4">
-                        <button class="premium-bg-color text-black font-bold py-3 px-8 rounded-md text-lg hover-gold transition-all duration-300">
-                            View Services
-                        </button>
+                        <button class="premium-bg-color text-black font-bold py-3 px-8 rounded-md text-lg hover-gold transition">View Solutions</button>
                     </div>
                 </div>
 
-                <!-- eXtract Clip Card -->
-                <div class="bg-card p-10 rounded-xl space-y-4 shadow-2xl relative overflow-hidden">
-                    <h2 class="text-3xl font-bold premium-text-color">eXtract Clip</h2>
-                    <p class="text-blue-grey leading-relaxed text-lg">Professional video repurposing tool by eX.</p>
+                <!-- Card 3: System Solutions (Still focused on Extension Architecture) -->
+                <div class="bg-card p-10 rounded-xl space-y-4 shadow-2xl relative">
+                    <h2 class="text-3xl font-bold premium-text-color">System Solutions</h2>
+                    <p class="text-gray-300 leading-relaxed text-lg">Scalable architectural designs that extend the capabilities of your existing systems, focusing on high-performance and efficiency.</p>
                     <div class="pt-4">
-                        <button class="premium-bg-color text-black font-bold py-3 px-8 rounded-md text-lg hover-gold transition-all duration-300">
-                            Open Tool
-                        </button>
+                        <button class="premium-bg-color text-black font-bold py-3 px-8 rounded-md text-lg hover-gold transition">View Services</button>
                     </div>
-                    <!-- Faint Sparkle Icon -->
-                    <div class="absolute bottom-4 right-4 text-white opacity-20">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.921-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
-                        </svg>
+                    <!-- Small star icon -->
+                    <div class="absolute bottom-4 right-4 text-gray-700 opacity-30">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.921-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
                     </div>
                 </div>
 
             </div>
         </main>
-
     </div>
 </body>
 </html>
