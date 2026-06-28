@@ -5,62 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eXtract Clip | eX Editor</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        body { background: #0a0a0a; font-family: 'Segoe UI', sans-serif; }
-        .card { background: #111111; border: 1px solid #FFD700; border-radius: 16px; }
-        .btn-gold { background: #FFD700; color: #000; font-weight: 700; border-radius: 8px; padding: 14px; width: 100%; transition: all 0.3s; cursor: pointer; }
-        .btn-gold:hover { background: #FFC200; transform: scale(1.02); }
-        .input-style { background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 8px; padding: 14px; width: 100%; }
+        body { background: #0a0a0a; font-family: 'Inter', sans-serif; }
+        .card { background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 20px; }
+        .card:hover { border-color: #FFD700; transition: all 0.4s; }
+        .btn-gold { background: #FFD700; color: #000; font-weight: 600; border-radius: 10px; padding: 15px; width: 100%; transition: all 0.3s; cursor: pointer; letter-spacing: 2px; font-size: 13px; }
+        .btn-gold:hover { background: #FFC200; }
+        .input-style { background: #151515; border: 1px solid #222; color: white; border-radius: 10px; padding: 14px 16px; width: 100%; font-size: 13px; }
         .input-style:focus { outline: none; border-color: #FFD700; }
-        .label { color: #FFD700; font-size: 11px; font-weight: 700; margin-bottom: 6px; display: block; letter-spacing: 2px; }
+        .label { color: #FFD700; font-size: 10px; font-weight: 500; margin-bottom: 8px; display: block; letter-spacing: 3px; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 86px; font-weight: 300; color: #FFD700; letter-spacing: 6px; line-height: 1; }
     </style>
 </head>
 <body class="text-white p-6">
 
-    <div class="max-w-2xl mx-auto">
+    <div class="max-w-xl mx-auto">
 
         <!-- Header -->
-        <div class="text-center mb-10 mt-8">
-            <h1 style="font-size:64px; font-weight:300; color:#FFD700; letter-spacing:12px; line-height:1;">eX</h1>
-            <p style="color:#FFD700; font-size:10px; letter-spacing:8px; margin-top:8px; font-weight:400;">PRECISION CLIP EXTRACTION</p>
-            <div style="width:40px; height:1px; background:#FFD700; margin:12px auto;"></div>
-            <p style="color:#444; font-size:10px; letter-spacing:3px;">PROFESSIONAL VIDEO REPURPOSING TOOL</p>
+        <div class="text-center mb-12 mt-10">
+            <div class="logo">eX</div>
+            <p style="color:#FFD700; font-size:9px; letter-spacing:10px; margin-top:10px;">PRECISION CLIP EXTRACTION</p>
+            <div style="width:30px; height:1px; background:#FFD700; margin:14px auto;"></div>
+            <p style="color:#333; font-size:9px; letter-spacing:4px;">PROFESSIONAL VIDEO REPURPOSING TOOL</p>
         </div>
 
         <!-- Main Card -->
         <div class="card p-8">
+            <p style="color:#444; font-size:11px; letter-spacing:2px; text-align:center; margin-bottom:24px;">PASTE YOUTUBE LINK BELOW</p>
 
-            <p class="text-gray-500 text-xs mb-6 text-center tracking-widest">PASTE YOUTUBE LINK TO EXTRACT PROFESSIONAL CLIPS</p>
-
-            <!-- YouTube Input -->
-            <div class="mb-4">
+            <div class="mb-5">
                 <label class="label">YOUTUBE LINK</label>
-                <input
-                    id="youtubeUrl"
-                    type="text"
-                    placeholder="https://www.youtube.com/watch?v=..."
-                    class="input-style"
-                />
+                <input id="youtubeUrl" type="text" placeholder="https://www.youtube.com/watch?v=..." class="input-style"/>
             </div>
 
-            <button onclick="loadVideo()" class="btn-gold mb-6">
-                ▶ LOAD VIDEO
-            </button>
+            <button onclick="loadVideo()" class="btn-gold mb-6">▶ LOAD VIDEO</button>
 
-            <!-- Video Player -->
             <div id="videoContainer" class="hidden">
-
-                <div style="border:1px solid #FFD700; border-radius:12px; overflow:hidden; margin-bottom:20px;">
-                    <iframe
-                        id="youtubePlayer"
-                        class="w-full"
-                        height="280"
-                        frameborder="0"
-                        allowfullscreen>
-                    </iframe>
+                <div style="border:1px solid #222; border-radius:12px; overflow:hidden; margin-bottom:20px;">
+                    <iframe id="youtubePlayer" class="w-full" height="260" frameborder="0" allowfullscreen></iframe>
                 </div>
 
-                <!-- Time Controls -->
                 <div class="grid grid-cols-2 gap-4 mb-4">
                     <div>
                         <label class="label">START TIME (seconds)</label>
@@ -72,7 +57,6 @@
                     </div>
                 </div>
 
-                <!-- Editing Options -->
                 <div class="grid grid-cols-2 gap-4 mb-6">
                     <div>
                         <label class="label">CLIP TITLE</label>
@@ -93,58 +77,3 @@
                             <option>YouTube (16:9)</option>
                             <option>Reels/TikTok (9:16)</option>
                             <option>Instagram (1:1)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="label">COLOR FILTER</label>
-                        <select id="clipColor" class="input-style">
-                            <option>None</option>
-                            <option>Vibrant</option>
-                            <option>Cinematic</option>
-                            <option>Warm</option>
-                            <option>Cool</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button onclick="extractClip()" class="btn-gold">
-                    ✂ EXTRACT CLIP
-                </button>
-
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <p class="text-center text-gray-700 text-xs mt-6 tracking-widest">eX EDITOR © 2026 | SECURE VIDEO TRANSFORMATION</p>
-
-    </div>
-
-    <script>
-        function loadVideo() {
-            const url = document.getElementById('youtubeUrl').value;
-            const videoId = extractVideoId(url);
-            if (!videoId) { alert('Please enter a valid YouTube link!'); return; }
-            document.getElementById('youtubePlayer').src = `https://www.youtube.com/embed/${videoId}`;
-            document.getElementById('videoContainer').classList.remove('hidden');
-        }
-
-        function extractVideoId(url) {
-            const regex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/;
-            const match = url.match(regex);
-            return match ? match[1] : null;
-        }
-
-        function extractClip() {
-            const start = document.getElementById('startTime').value;
-            const end = document.getElementById('endTime').value;
-            const title = document.getElementById('clipTitle').value || 'My Clip';
-            const speed = document.getElementById('clipSpeed').value;
-            const format = document.getElementById('clipFormat').value;
-            const color = document.getElementById('clipColor').value;
-            if (!start || !end) { alert('Please enter start and end time!'); return; }
-            alert(`✅ Clip "${title}" ready!\nFrom ${start}s to ${end}s\nSpeed: ${speed}x | Format: ${format} | Filter: ${color}`);
-        }
-    </script>
-
-</body>
-</html>
