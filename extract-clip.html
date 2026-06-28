@@ -8,103 +8,115 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0a0a0a; font-family: 'Inter', sans-serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 52px; font-style: italic; font-weight: 900; color: #FFD700; letter-spacing: -2px; line-height: 1; -webkit-text-stroke: 1px #FFA500; text-shadow: 0 0 20px rgba(255,215,0,0.3); }
-        .btn-gold { background: #FFD700; color: #000; font-weight: 600; border-radius: 8px; padding: 12px; width: 100%; cursor: pointer; letter-spacing: 2px; font-size: 12px; border: none; transition: all 0.3s; }
+        body { background: #0a0a0a; font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 40px; font-style: italic; font-weight: 900; color: #FFD700; letter-spacing: -2px; line-height: 1; -webkit-text-stroke: 1px #FFA500; }
+        .btn-gold { background: #FFD700; color: #000; font-weight: 700; border-radius: 8px; padding: 10px 16px; cursor: pointer; letter-spacing: 1px; font-size: 12px; border: none; transition: all 0.3s; white-space: nowrap; }
         .btn-gold:hover { background: #FFC200; }
+        .btn-gold-full { background: #FFD700; color: #000; font-weight: 700; border-radius: 8px; padding: 14px; width: 100%; cursor: pointer; letter-spacing: 2px; font-size: 13px; border: none; transition: all 0.3s; margin-top: 10px; }
+        .btn-gold-full:hover { background: #FFC200; }
         .input-style { background: #151515; border: 1px solid #333; color: white; border-radius: 8px; padding: 10px 14px; width: 100%; font-size: 12px; }
         .input-style:focus { outline: none; border-color: #FFD700; }
-        .label { color: #FFD700; font-size: 9px; font-weight: 600; margin-bottom: 5px; display: block; letter-spacing: 2px; }
-        .card { background: #0f0f0f; border: 1px solid #222; border-radius: 16px; }
+        .label { color: #FFD700; font-size: 9px; font-weight: 600; margin-bottom: 4px; display: block; letter-spacing: 2px; }
+        .card { background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 12px; padding: 12px; }
 
-        /* Timeline */
-        .timeline-track { position: relative; width: 100%; height: 6px; background: #2a2a2a; border-radius: 3px; margin: 20px 0 10px; }
-        .timeline-fill { position: absolute; height: 6px; background: #FFD700; border-radius: 3px; top: 0; }
-        .handle { position: absolute; width: 22px; height: 22px; background: #FFD700; border-radius: 50%; top: 50%; transform: translate(-50%, -50%); cursor: grab; border: 2px solid #000; box-shadow: 0 0 8px rgba(255,215,0,0.5); z-index: 10; }
-        .handle:active { cursor: grabbing; transform: translate(-50%, -50%) scale(1.2); }
-        .time-box { background: #1a1a1a; border: 1px solid #333; border-radius: 6px; padding: 6px 10px; text-align: center; flex: 1; }
-        .time-box-label { color: #FFD700; font-size: 8px; letter-spacing: 2px; display: block; }
-        .time-box-value { color: #fff; font-size: 14px; font-weight: 600; }
+        /* Video Container */
+        .video-wrap { position: relative; width: 100%; background: #000; border-radius: 12px; overflow: hidden; }
+        .video-wrap iframe { width: 100%; height: 100%; display: block; border: none; }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            body { overflow-y: auto; height: auto; }
-            .main-grid { flex-direction: column !important; }
+        /* Timeline under video */
+        .video-timeline { background: #111; padding: 10px 12px; border-radius: 0 0 12px 12px; border: 1px solid #222; border-top: none; }
+        .tl-track { position: relative; width: 100%; height: 8px; background: #2a2a2a; border-radius: 4px; margin: 8px 0; cursor: pointer; }
+        .tl-fill { position: absolute; height: 8px; background: #FFD700; border-radius: 4px; top: 0; pointer-events: none; }
+        .tl-handle { position: absolute; width: 22px; height: 22px; background: #FFD700; border-radius: 50%; top: 50%; transform: translate(-50%, -50%); cursor: grab; border: 3px solid #0a0a0a; box-shadow: 0 0 10px rgba(255,215,0,0.6); z-index: 10; }
+        .tl-handle:active { cursor: grabbing; transform: translate(-50%, -50%) scale(1.15); }
+        .tl-times { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .tl-badge { background: #FFD700; color: #000; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
+        .tl-hint { color: #444; font-size: 9px; letter-spacing: 1px; }
+
+        /* Settings Grid */
+        .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+
+        @media (max-width: 600px) {
+            .main-layout { flex-direction: column !important; }
+            .right-panel { width: 100% !important; }
         }
     </style>
 </head>
 <body class="text-white">
 
     <!-- Header -->
-    <div style="padding: 12px 24px; border-bottom: 1px solid #1a1a1a; display: flex; align-items: center; justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 16px;">
+    <div style="padding:10px 20px; border-bottom:1px solid #1a1a1a; display:flex; align-items:center; justify-content:space-between; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:12px;">
             <div class="logo">eX</div>
             <div>
-                <p style="color:#FFD700; font-size:9px; letter-spacing:6px; font-weight:700;">PRECISION CLIP EXTRACTION</p>
-                <p style="color:#555; font-size:8px; letter-spacing:3px;">PROFESSIONAL VIDEO REPURPOSING TOOL</p>
+                <p style="color:#FFD700; font-size:8px; letter-spacing:5px; font-weight:700;">PRECISION CLIP EXTRACTION</p>
+                <p style="color:#444; font-size:7px; letter-spacing:2px;">PROFESSIONAL VIDEO REPURPOSING TOOL</p>
             </div>
         </div>
-        <div style="color:#333; font-size:9px; letter-spacing:2px;">eX EDITOR © 2026</div>
+        <p style="color:#222; font-size:8px; letter-spacing:2px;">eX EDITOR © 2026</p>
     </div>
 
-    <!-- Main Content -->
-    <div style="flex:1; padding: 16px 24px; display: flex; gap: 16px; overflow: hidden;" class="main-grid">
+    <!-- URL Bar -->
+    <div style="padding:10px 20px; border-bottom:1px solid #1a1a1a; flex-shrink:0;">
+        <div style="display:flex; gap:8px; align-items:center;">
+            <input id="youtubeUrl" type="text" placeholder="Paste YouTube link here..." class="input-style" style="flex:1;"/>
+            <button onclick="loadVideo()" class="btn-gold">▶ LOAD VIDEO</button>
+        </div>
+    </div>
 
-        <!-- Left — Input + Video -->
-        <div style="flex: 1.2; display: flex; flex-direction: column; gap: 12px;">
-            
-            <!-- URL Input -->
-            <div class="card" style="padding: 16px;">
-                <label class="label">YOUTUBE LINK</label>
-                <div style="display: flex; gap: 8px;">
-                    <input id="youtubeUrl" type="text" placeholder="https://www.youtube.com/watch?v=..." class="input-style"/>
-                    <button onclick="loadVideo()" style="background:#FFD700; color:#000; font-weight:700; border-radius:8px; padding:10px 16px; cursor:pointer; border:none; white-space:nowrap; font-size:12px; letter-spacing:1px;">▶ LOAD</button>
+    <!-- Main Layout -->
+    <div style="flex:1; padding:12px 20px; display:flex; gap:14px; overflow:auto;" class="main-layout">
+
+        <!-- Left — Video + Timeline -->
+        <div style="flex:1.5; display:flex; flex-direction:column;">
+
+            <!-- Video -->
+            <div class="video-wrap" style="height: clamp(220px, 40vw, 420px);">
+                <div id="placeholder" style="height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; background:#0a0a0a;">
+                    <div style="font-size:44px;">🎬</div>
+                    <p style="color:#333; font-size:11px; letter-spacing:2px;">PASTE LINK AND CLICK LOAD</p>
+                </div>
+                <iframe id="youtubePlayer" class="hidden" style="width:100%; height:100%;" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            </div>
+
+            <!-- Timeline — RIGHT UNDER VIDEO -->
+            <div class="video-timeline">
+                <p style="color:#FFD700; font-size:9px; letter-spacing:2px; font-weight:700;">✂ DRAG TO SELECT CLIP</p>
+                <div class="tl-track" id="track">
+                    <div class="tl-fill" id="fill"></div>
+                    <div class="tl-handle" id="startHandle"></div>
+                    <div class="tl-handle" id="endHandle"></div>
+                </div>
+                <div class="tl-times">
+                    <span class="tl-badge">▶ <span id="startDisplay">0:00</span></span>
+                    <span class="tl-hint">DRAG DOTS TO SELECT</span>
+                    <span class="tl-badge">■ <span id="endDisplay">1:00</span></span>
                 </div>
             </div>
 
-            <!-- Video Player -->
-            <div class="card" style="flex:1; overflow:hidden; position:relative;">
-                <div id="placeholder" style="height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;">
-                    <div style="font-size:48px;">🎬</div>
-                    <p style="color:#333; font-size:12px; letter-spacing:2px;">PASTE LINK AND CLICK LOAD</p>
+            <!-- Duration Info -->
+            <div style="display:flex; gap:8px; margin-top:10px;">
+                <div style="flex:1; background:#111; border:1px solid #1e1e1e; border-radius:8px; padding:8px; text-align:center;">
+                    <span style="color:#FFD700; font-size:8px; letter-spacing:2px; display:block;">CLIP DURATION</span>
+                    <span style="color:#fff; font-size:16px; font-weight:700;" id="durationDisplay">1:00</span>
                 </div>
-                <iframe id="youtubePlayer" class="hidden" style="width:100%; height:100%; border:none;" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                <div style="flex:1; background:#111; border:1px solid #1e1e1e; border-radius:8px; padding:8px; text-align:center;">
+                    <span style="color:#FFD700; font-size:8px; letter-spacing:2px; display:block;">START TIME</span>
+                    <span style="color:#fff; font-size:16px; font-weight:700;" id="startInfo">0:00</span>
+                </div>
+                <div style="flex:1; background:#111; border:1px solid #1e1e1e; border-radius:8px; padding:8px; text-align:center;">
+                    <span style="color:#FFD700; font-size:8px; letter-spacing:2px; display:block;">END TIME</span>
+                    <span style="color:#fff; font-size:16px; font-weight:700;" id="endInfo">1:00</span>
+                </div>
             </div>
+
         </div>
 
-        <!-- Right — Controls -->
-        <div style="width: 300px; display: flex; flex-direction: column; gap: 12px;">
-
-            <!-- Clip Range -->
-            <div class="card" style="padding: 16px;">
-                <label class="label">✂ SELECT CLIP RANGE</label>
-                <p style="color:#444; font-size:10px; margin-bottom:8px;">Drag yellow dots to select your clip</p>
-                <div class="timeline-track" id="track">
-                    <div class="timeline-fill" id="fill"></div>
-                    <div class="handle" id="startHandle"></div>
-                    <div class="handle" id="endHandle"></div>
-                </div>
-                <div style="display:flex; gap:8px; margin-top:12px;">
-                    <div class="time-box">
-                        <span class="time-box-label">START</span>
-                        <span class="time-box-value" id="startDisplay">0:00</span>
-                    </div>
-                    <div style="align-self:center; color:#333; font-size:16px;">→</div>
-                    <div class="time-box">
-                        <span class="time-box-label">END</span>
-                        <span class="time-box-value" id="endDisplay">1:00</span>
-                    </div>
-                    <div class="time-box">
-                        <span class="time-box-label">CLIP</span>
-                        <span class="time-box-value" id="durationDisplay">1:00</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="card" style="padding: 16px; flex:1;">
-                <label class="label">CLIP SETTINGS</label>
-                <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">
+        <!-- Right — Settings -->
+        <div style="width:260px; display:flex; flex-direction:column;" class="right-panel">
+            <div class="card" style="flex:1;">
+                <label class="label" style="font-size:10px; margin-bottom:12px;">CLIP SETTINGS</label>
+                <div style="display:flex; flex-direction:column; gap:10px;">
                     <div>
                         <label class="label">CLIP TITLE</label>
                         <input type="text" id="clipTitle" placeholder="My Clip" class="input-style"/>
@@ -136,13 +148,16 @@
                             <option>Cool</option>
                         </select>
                     </div>
+                    <div>
+                        <label class="label">CLIP TITLE ON VIDEO</label>
+                        <input type="text" id="videoTitle" placeholder="Add text overlay..." class="input-style"/>
+                    </div>
                 </div>
             </div>
 
-            <!-- Extract Button -->
-            <button onclick="extractClip()" class="btn-gold">✂ EXTRACT CLIP</button>
-
+            <button onclick="extractClip()" class="btn-gold-full">✂ EXTRACT CLIP</button>
         </div>
+
     </div>
 
     <script>
@@ -183,6 +198,8 @@
             document.getElementById('fill').style.width = (endX - startX) + 'px';
             document.getElementById('startDisplay').textContent = formatTime(startTime);
             document.getElementById('endDisplay').textContent = formatTime(endTime);
+            document.getElementById('startInfo').textContent = formatTime(startTime);
+            document.getElementById('endInfo').textContent = formatTime(endTime);
             document.getElementById('durationDisplay').textContent = formatTime(endTime - startTime);
         }
 
@@ -207,7 +224,7 @@
             handle.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 const move = (e) => onMove(e.touches[0].clientX);
-                document.addEventListener('touchmove', move);
+                document.addEventListener('touchmove', move, { passive: false });
                 document.addEventListener('touchend', () => document.removeEventListener('touchmove', move), { once: true });
             });
         }
