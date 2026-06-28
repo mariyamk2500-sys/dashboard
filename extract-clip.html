@@ -3,77 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eXtract Clip | Tool</title>
+    <title>eXtract Clip | eX Editor</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #0a0a0a; font-family: 'Segoe UI', sans-serif; }
+        .gold { color: #FFD700; }
+        .gold-border { border-color: #FFD700; }
+        .gold-bg { background: #FFD700; }
+        .card { background: #111111; border: 1px solid #FFD700; border-radius: 16px; }
+        .btn-gold { background: #FFD700; color: #000; font-weight: 700; border-radius: 8px; padding: 14px; width: 100%; transition: all 0.3s; }
+        .btn-gold:hover { background: #FFC200; transform: scale(1.02); }
+        .input-style { background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 8px; padding: 14px; width: 100%; }
+        .input-style:focus { outline: none; border-color: #FFD700; }
+        .label { color: #FFD700; font-size: 12px; font-weight: 600; margin-bottom: 6px; display: block; letter-spacing: 1px; }
+    </style>
 </head>
-<body class="bg-slate-900 text-white font-sans p-10">
+<body class="text-white p-6">
+
     <div class="max-w-2xl mx-auto">
-        <a href="index.html" class="text-blue-500 hover:underline mb-8 block">&larr; Back to Dashboard</a>
-        <h1 class="text-4xl font-bold mb-6">eXtract Clip</h1>
         
-        <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700">
-            <p class="text-slate-400 mb-6">Paste YouTube link below to start clipping!</p>
+        <!-- Header -->
+        <div class="text-center mb-10 mt-6">
+            <h1 class="text-5xl font-black gold mb-2">eX</h1>
+            <p class="text-xs tracking-widest text-gray-400 uppercase">Precision Clip Extraction</p>
+            <div class="w-20 h-0.5 gold-bg mx-auto mt-3"></div>
+        </div>
+
+        <!-- Main Card -->
+        <div class="card p-8">
             
-            <!-- YouTube Link Input -->
-            <input 
-                id="youtubeUrl" 
-                type="text" 
-                placeholder="Paste YouTube link here..." 
-                class="w-full bg-slate-700 text-white p-4 rounded-lg mb-4 border border-slate-600 focus:outline-none focus:border-blue-500"
-            />
-            
-            <button 
-                onclick="loadVideo()" 
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition mb-6">
-                Load Video
+            <p class="text-gray-400 text-sm mb-6 text-center">Paste YouTube link to extract professional clips</p>
+
+            <!-- YouTube Input -->
+            <div class="mb-4">
+                <label class="label">YOUTUBE LINK</label>
+                <input 
+                    id="youtubeUrl" 
+                    type="text" 
+                    placeholder="https://www.youtube.com/watch?v=..." 
+                    class="input-style"
+                />
+            </div>
+
+            <button onclick="loadVideo()" class="btn-gold mb-6">
+                ▶ LOAD VIDEO
             </button>
 
             <!-- Video Player -->
             <div id="videoContainer" class="hidden">
-                <iframe 
-                    id="youtubePlayer"
-                    class="w-full rounded-lg"
-                    height="315"
-                    frameborder="0"
-                    allowfullscreen>
-                </iframe>
                 
-                <!-- Clip Controls -->
-                <div class="mt-6 grid grid-cols-2 gap-4">
+                <div class="rounded-xl overflow-hidden mb-6 border gold-border">
+                    <iframe 
+                        id="youtubePlayer"
+                        class="w-full"
+                        height="280"
+                        frameborder="0"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <!-- Time Controls -->
+                <div class="grid grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label class="text-slate-400 text-sm">Start Time (seconds)</label>
-                        <input type="number" id="startTime" placeholder="0" 
-                            class="w-full bg-slate-700 text-white p-3 rounded-lg mt-1 border border-slate-600"/>
+                        <label class="label">START TIME (seconds)</label>
+                        <input type="number" id="startTime" placeholder="0" class="input-style"/>
                     </div>
                     <div>
-                        <label class="text-slate-400 text-sm">End Time (seconds)</label>
-                        <input type="number" id="endTime" placeholder="30" 
-                            class="w-full bg-slate-700 text-white p-3 rounded-lg mt-1 border border-slate-600"/>
+                        <label class="label">END TIME (seconds)</label>
+                        <input type="number" id="endTime" placeholder="30" class="input-style"/>
                     </div>
                 </div>
 
-                <button 
-                    onclick="extractClip()" 
-                    class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-lg transition mt-4">
-                    Extract Clip ✂️
+                <!-- Editing Options -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="label">CLIP TITLE</label>
+                        <input type="text" id="clipTitle" placeholder="My Clip" class="input-style"/>
+                    </div>
+                    <div>
+                        <label class="label">SPEED</label>
+                        <select id="clipSpeed" class="input-style">
+                            <option value="1">Normal (1x)</option>
+                            <option value="1.25">Fast (1.25x)</option>
+                            <option value="1.5">Faster (1.5x)</option>
+                            <option value="0.75">Slow (0.75x)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="label">FORMAT</label>
+                        <select id="clipFormat" class="input-style">
+                            <option>YouTube (16:9)</option>
+                            <option>Reels/TikTok (9:16)</option>
+                            <option>Instagram (1:1)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="label">COLOR FILTER</label>
+                        <select id="clipColor" class="input-style">
+                            <option>None</option>
+                            <option>Vibrant</option>
+                            <option>Cinematic</option>
+                            <option>Warm</option>
+                            <option>Cool</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="extractClip()" class="btn-gold">
+                    ✂ EXTRACT CLIP
                 </button>
+
             </div>
         </div>
+
+        <!-- Footer -->
+        <p class="text-center text-gray-600 text-xs mt-6">eX Editor © 2026 | Secure Video Transformation</p>
+
     </div>
 
     <script>
         function loadVideo() {
             const url = document.getElementById('youtubeUrl').value;
             const videoId = extractVideoId(url);
-            
-            if (!videoId) {
-                alert('Please enter a valid YouTube link!');
-                return;
-            }
-            
-            const player = document.getElementById('youtubePlayer');
-            player.src = `https://www.youtube.com/embed/${videoId}`;
-            
+            if (!videoId) { alert('Please enter a valid YouTube link!'); return; }
+            document.getElementById('youtubePlayer').src = `https://www.youtube.com/embed/${videoId}`;
             document.getElementById('videoContainer').classList.remove('hidden');
         }
 
@@ -86,14 +139,14 @@
         function extractClip() {
             const start = document.getElementById('startTime').value;
             const end = document.getElementById('endTime').value;
-            
-            if (!start || !end) {
-                alert('Please enter start and end time!');
-                return;
-            }
-            
-            alert(`Clip from ${start}s to ${end}s will be extracted! AI processing coming next...`);
+            const title = document.getElementById('clipTitle').value || 'My Clip';
+            const speed = document.getElementById('clipSpeed').value;
+            const format = document.getElementById('clipFormat').value;
+            const color = document.getElementById('clipColor').value;
+            if (!start || !end) { alert('Please enter start and end time!'); return; }
+            alert(`✅ Clip "${title}" from ${start}s to ${end}s\nSpeed: ${speed}x | Format: ${format} | Filter: ${color}\n\nAI Processing coming next!`);
         }
     </script>
+
 </body>
 </html>
