@@ -5,17 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eXtract Clip | eX Editor</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         body { background: #0a0a0a; font-family: 'Inter', sans-serif; }
-        .card { background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 20px; }
-        .card:hover { border-color: #FFD700; transition: all 0.4s; }
+        .card { background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 20px; transition: all 0.4s; }
+        .card:hover { border-color: #FFD700; }
         .btn-gold { background: #FFD700; color: #000; font-weight: 600; border-radius: 10px; padding: 15px; width: 100%; transition: all 0.3s; cursor: pointer; letter-spacing: 2px; font-size: 13px; }
         .btn-gold:hover { background: #FFC200; }
         .input-style { background: #151515; border: 1px solid #222; color: white; border-radius: 10px; padding: 14px 16px; width: 100%; font-size: 13px; }
         .input-style:focus { outline: none; border-color: #FFD700; }
         .label { color: #FFD700; font-size: 10px; font-weight: 500; margin-bottom: 8px; display: block; letter-spacing: 3px; }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 86px; font-weight: 300; color: #FFD700; letter-spacing: 6px; line-height: 1; }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 110px;
+            font-style: italic;
+            font-weight: 900;
+            color: #FFD700;
+            letter-spacing: -4px;
+            line-height: 1;
+            -webkit-text-stroke: 2px #FFA500;
+            text-shadow: 0 0 30px rgba(255,215,0,0.3);
+        }
     </style>
 </head>
 <body class="text-white p-6">
@@ -77,3 +87,52 @@
                             <option>YouTube (16:9)</option>
                             <option>Reels/TikTok (9:16)</option>
                             <option>Instagram (1:1)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="label">COLOR FILTER</label>
+                        <select id="clipColor" class="input-style">
+                            <option>None</option>
+                            <option>Vibrant</option>
+                            <option>Cinematic</option>
+                            <option>Warm</option>
+                            <option>Cool</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="extractClip()" class="btn-gold">✂ EXTRACT CLIP</button>
+            </div>
+        </div>
+
+        <p style="text-align:center; color:#222; font-size:9px; letter-spacing:4px; margin-top:24px;">eX EDITOR © 2026 | SECURE VIDEO TRANSFORMATION</p>
+
+    </div>
+
+    <script>
+        function loadVideo() {
+            const url = document.getElementById('youtubeUrl').value;
+            const videoId = extractVideoId(url);
+            if (!videoId) { alert('Please enter a valid YouTube link!'); return; }
+            document.getElementById('youtubePlayer').src = `https://www.youtube.com/embed/${videoId}`;
+            document.getElementById('videoContainer').classList.remove('hidden');
+        }
+        function extractVideoId(url) {
+            const regex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/;
+            const match = url.match(regex);
+            return match ? match[1] : null;
+        }
+        function extractClip() {
+            const start = document.getElementById('startTime').value;
+            const end = document.getElementById('endTime').value;
+            const title = document.getElementById('clipTitle').value || 'My Clip';
+            const speed = document.getElementById('clipSpeed').value;
+            const format = document.getElementById('clipFormat').value;
+            const color = document.getElementById('clipColor').value;
+            if (!start || !end) { alert('Please enter start and end time!'); return; }
+            alert(`✅ Clip "${title}" ready!\nFrom ${start}s to ${end}s\nSpeed: ${speed}x | Format: ${format} | Filter: ${color}`);
+        }
+    </script>
+
+</body>
+</html>
