@@ -7,65 +7,104 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        body { background: #0a0a0a; font-family: 'Inter', sans-serif; }
-        .card { background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 20px; transition: all 0.4s; }
-        .card:hover { border-color: #FFD700; }
-        .btn-gold { background: #FFD700; color: #000; font-weight: 600; border-radius: 10px; padding: 15px; width: 100%; transition: all 0.3s; cursor: pointer; letter-spacing: 2px; font-size: 13px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #0a0a0a; font-family: 'Inter', sans-serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 52px; font-style: italic; font-weight: 900; color: #FFD700; letter-spacing: -2px; line-height: 1; -webkit-text-stroke: 1px #FFA500; text-shadow: 0 0 20px rgba(255,215,0,0.3); }
+        .btn-gold { background: #FFD700; color: #000; font-weight: 600; border-radius: 8px; padding: 12px; width: 100%; cursor: pointer; letter-spacing: 2px; font-size: 12px; border: none; transition: all 0.3s; }
         .btn-gold:hover { background: #FFC200; }
-        .input-style { background: #151515; border: 1px solid #222; color: white; border-radius: 10px; padding: 14px 16px; width: 100%; font-size: 13px; }
+        .input-style { background: #151515; border: 1px solid #333; color: white; border-radius: 8px; padding: 10px 14px; width: 100%; font-size: 12px; }
         .input-style:focus { outline: none; border-color: #FFD700; }
-        .label { color: #FFD700; font-size: 10px; font-weight: 500; margin-bottom: 8px; display: block; letter-spacing: 3px; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 110px; font-style: italic; font-weight: 900; color: #FFD700; letter-spacing: -4px; line-height: 1; -webkit-text-stroke: 2px #FFA500; text-shadow: 0 0 30px rgba(255,215,0,0.3); }
-        .timeline-container { position: relative; width: 100%; height: 50px; background: #1a1a1a; border-radius: 10px; margin: 15px 0; border: 1px solid #333; }
-        .timeline-track { position: absolute; top: 50%; transform: translateY(-50%); width: calc(100% - 20px); left: 10px; height: 4px; background: #333; border-radius: 2px; }
-        .timeline-range { position: absolute; height: 4px; background: #FFD700; border-radius: 2px; top: 50%; transform: translateY(-50%); }
-        .timeline-handle { position: absolute; width: 18px; height: 18px; background: #FFD700; border-radius: 50%; top: 50%; transform: translateY(-50%); cursor: grab; border: 2px solid #000; z-index: 10; }
-        .time-badge { background: #FFD700; color: #000; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; letter-spacing: 1px; }
+        .label { color: #FFD700; font-size: 9px; font-weight: 600; margin-bottom: 5px; display: block; letter-spacing: 2px; }
+        .card { background: #0f0f0f; border: 1px solid #222; border-radius: 16px; }
+
+        /* Timeline */
+        .timeline-track { position: relative; width: 100%; height: 6px; background: #2a2a2a; border-radius: 3px; margin: 20px 0 10px; }
+        .timeline-fill { position: absolute; height: 6px; background: #FFD700; border-radius: 3px; top: 0; }
+        .handle { position: absolute; width: 22px; height: 22px; background: #FFD700; border-radius: 50%; top: 50%; transform: translate(-50%, -50%); cursor: grab; border: 2px solid #000; box-shadow: 0 0 8px rgba(255,215,0,0.5); z-index: 10; }
+        .handle:active { cursor: grabbing; transform: translate(-50%, -50%) scale(1.2); }
+        .time-box { background: #1a1a1a; border: 1px solid #333; border-radius: 6px; padding: 6px 10px; text-align: center; flex: 1; }
+        .time-box-label { color: #FFD700; font-size: 8px; letter-spacing: 2px; display: block; }
+        .time-box-value { color: #fff; font-size: 14px; font-weight: 600; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { overflow-y: auto; height: auto; }
+            .main-grid { flex-direction: column !important; }
+        }
     </style>
 </head>
-<body class="text-white p-6">
+<body class="text-white">
 
-    <div class="max-w-xl mx-auto">
-
-        <!-- Header -->
-        <div class="text-center mb-12 mt-10">
+    <!-- Header -->
+    <div style="padding: 12px 24px; border-bottom: 1px solid #1a1a1a; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 16px;">
             <div class="logo">eX</div>
-            <p style="color:#FFD700; font-size:12px; letter-spacing:8px; margin-top:10px; font-weight:700;">PRECISION CLIP EXTRACTION</p>
-            <div style="width:30px; height:1px; background:#FFD700; margin:14px auto;"></div>
-            <p style="color:#ffffff; font-size:11px; letter-spacing:4px; font-weight:400;">PROFESSIONAL VIDEO REPURPOSING TOOL</p>
+            <div>
+                <p style="color:#FFD700; font-size:9px; letter-spacing:6px; font-weight:700;">PRECISION CLIP EXTRACTION</p>
+                <p style="color:#555; font-size:8px; letter-spacing:3px;">PROFESSIONAL VIDEO REPURPOSING TOOL</p>
+            </div>
         </div>
+        <div style="color:#333; font-size:9px; letter-spacing:2px;">eX EDITOR © 2026</div>
+    </div>
 
-        <!-- Main Card -->
-        <div class="card p-8">
-            <p style="color:#888; font-size:11px; letter-spacing:2px; text-align:center; margin-bottom:24px;">PASTE YOUTUBE LINK BELOW</p>
+    <!-- Main Content -->
+    <div style="flex:1; padding: 16px 24px; display: flex; gap: 16px; overflow: hidden;" class="main-grid">
 
-            <div class="mb-5">
+        <!-- Left — Input + Video -->
+        <div style="flex: 1.2; display: flex; flex-direction: column; gap: 12px;">
+            
+            <!-- URL Input -->
+            <div class="card" style="padding: 16px;">
                 <label class="label">YOUTUBE LINK</label>
-                <input id="youtubeUrl" type="text" placeholder="https://www.youtube.com/watch?v=..." class="input-style"/>
+                <div style="display: flex; gap: 8px;">
+                    <input id="youtubeUrl" type="text" placeholder="https://www.youtube.com/watch?v=..." class="input-style"/>
+                    <button onclick="loadVideo()" style="background:#FFD700; color:#000; font-weight:700; border-radius:8px; padding:10px 16px; cursor:pointer; border:none; white-space:nowrap; font-size:12px; letter-spacing:1px;">▶ LOAD</button>
+                </div>
             </div>
 
-            <button onclick="loadVideo()" class="btn-gold mb-6">▶ LOAD VIDEO</button>
-
-            <div id="videoContainer" class="hidden">
-                <div style="border:1px solid #333; border-radius:12px; overflow:hidden; margin-bottom:20px;">
-                    <iframe id="youtubePlayer" class="w-full" height="260" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <!-- Video Player -->
+            <div class="card" style="flex:1; overflow:hidden; position:relative;">
+                <div id="placeholder" style="height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;">
+                    <div style="font-size:48px;">🎬</div>
+                    <p style="color:#333; font-size:12px; letter-spacing:2px;">PASTE LINK AND CLICK LOAD</p>
                 </div>
+                <iframe id="youtubePlayer" class="hidden" style="width:100%; height:100%; border:none;" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            </div>
+        </div>
 
-                <label class="label">SELECT CLIP RANGE</label>
-                <div class="timeline-container" id="timelineContainer">
-                    <div class="timeline-track">
-                        <div class="timeline-range" id="timelineRange"></div>
-                        <div class="timeline-handle" id="startHandle" style="left:0px;"></div>
-                        <div class="timeline-handle" id="endHandle" style="left:calc(100% - 18px);"></div>
+        <!-- Right — Controls -->
+        <div style="width: 300px; display: flex; flex-direction: column; gap: 12px;">
+
+            <!-- Clip Range -->
+            <div class="card" style="padding: 16px;">
+                <label class="label">✂ SELECT CLIP RANGE</label>
+                <p style="color:#444; font-size:10px; margin-bottom:8px;">Drag yellow dots to select your clip</p>
+                <div class="timeline-track" id="track">
+                    <div class="timeline-fill" id="fill"></div>
+                    <div class="handle" id="startHandle"></div>
+                    <div class="handle" id="endHandle"></div>
+                </div>
+                <div style="display:flex; gap:8px; margin-top:12px;">
+                    <div class="time-box">
+                        <span class="time-box-label">START</span>
+                        <span class="time-box-value" id="startDisplay">0:00</span>
+                    </div>
+                    <div style="align-self:center; color:#333; font-size:16px;">→</div>
+                    <div class="time-box">
+                        <span class="time-box-label">END</span>
+                        <span class="time-box-value" id="endDisplay">1:00</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-box-label">CLIP</span>
+                        <span class="time-box-value" id="durationDisplay">1:00</span>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; margin-top:8px; margin-bottom:24px;">
-                    <span class="time-badge">START: <span id="startDisplay">0s</span></span>
-                    <span style="color:#555; font-size:11px; align-self:center;">DRAG TO SELECT</span>
-                    <span class="time-badge">END: <span id="endDisplay">60s</span></span>
-                </div>
+            </div>
 
-                <div class="grid grid-cols-2 gap-4 mb-6">
+            <!-- Options -->
+            <div class="card" style="padding: 16px; flex:1;">
+                <label class="label">CLIP SETTINGS</label>
+                <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">
                     <div>
                         <label class="label">CLIP TITLE</label>
                         <input type="text" id="clipTitle" placeholder="My Clip" class="input-style"/>
@@ -98,13 +137,12 @@
                         </select>
                     </div>
                 </div>
-
-                <button onclick="extractClip()" class="btn-gold">✂ EXTRACT CLIP</button>
             </div>
+
+            <!-- Extract Button -->
+            <button onclick="extractClip()" class="btn-gold">✂ EXTRACT CLIP</button>
+
         </div>
-
-        <p style="text-align:center; color:#333; font-size:9px; letter-spacing:4px; margin-top:24px;">eX EDITOR © 2026 | SECURE VIDEO TRANSFORMATION</p>
-
     </div>
 
     <script>
@@ -116,9 +154,10 @@
             const url = document.getElementById('youtubeUrl').value;
             const videoId = extractVideoId(url);
             if (!videoId) { alert('Please enter a valid YouTube link!'); return; }
-            document.getElementById('youtubePlayer').src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
-            document.getElementById('videoContainer').classList.remove('hidden');
-            updateSlider();
+            document.getElementById('youtubePlayer').src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+            document.getElementById('youtubePlayer').classList.remove('hidden');
+            document.getElementById('placeholder').style.display = 'none';
+            setTimeout(updateSlider, 200);
         }
 
         function extractVideoId(url) {
@@ -127,67 +166,62 @@
             return match ? match[1] : null;
         }
 
-        const startHandle = document.getElementById('startHandle');
-        const endHandle = document.getElementById('endHandle');
-        const timelineRange = document.getElementById('timelineRange');
-        const track = document.querySelector('.timeline-track');
-        let dragging = null;
-
-        function getTrackWidth() { return track.offsetWidth - 18; }
-
-        function updateSlider() {
-            const trackW = getTrackWidth();
-            const startPct = startTime / videoDuration;
-            const endPct = endTime / videoDuration;
-            startHandle.style.left = (startPct * trackW) + 'px';
-            endHandle.style.left = (endPct * trackW) + 'px';
-            timelineRange.style.left = (startPct * trackW) + 'px';
-            timelineRange.style.width = ((endPct - startPct) * trackW) + 'px';
-            document.getElementById('startDisplay').textContent = formatTime(startTime);
-            document.getElementById('endDisplay').textContent = formatTime(endTime);
-        }
-
         function formatTime(s) {
             const m = Math.floor(s / 60);
             const sec = Math.floor(s % 60);
-            return m > 0 ? `${m}m ${sec}s` : `${sec}s`;
+            return `${m}:${sec.toString().padStart(2,'0')}`;
         }
 
-        startHandle.addEventListener('mousedown', () => dragging = 'start');
-        endHandle.addEventListener('mousedown', () => dragging = 'end');
-        document.addEventListener('mousemove', (e) => {
-            if (!dragging) return;
-            const rect = track.getBoundingClientRect();
-            const trackW = getTrackWidth();
-            let x = e.clientX - rect.left;
-            x = Math.max(0, Math.min(x, trackW));
-            const time = Math.round((x / trackW) * videoDuration);
-            if (dragging === 'start' && time < endTime - 5) startTime = time;
-            if (dragging === 'end' && time > startTime + 5) endTime = time;
-            updateSlider();
-        });
-        document.addEventListener('mouseup', () => dragging = null);
-        startHandle.addEventListener('touchstart', () => dragging = 'start');
-        endHandle.addEventListener('touchstart', () => dragging = 'end');
-        document.addEventListener('touchmove', (e) => {
-            if (!dragging) return;
-            const rect = track.getBoundingClientRect();
-            const trackW = getTrackWidth();
-            let x = e.touches[0].clientX - rect.left;
-            x = Math.max(0, Math.min(x, trackW));
-            const time = Math.round((x / trackW) * videoDuration);
-            if (dragging === 'start' && time < endTime - 5) startTime = time;
-            if (dragging === 'end' && time > startTime + 5) endTime = time;
-            updateSlider();
-        });
-        document.addEventListener('touchend', () => dragging = null);
+        function updateSlider() {
+            const track = document.getElementById('track');
+            const trackW = track.offsetWidth;
+            const startX = (startTime / videoDuration) * trackW;
+            const endX = (endTime / videoDuration) * trackW;
+            document.getElementById('startHandle').style.left = startX + 'px';
+            document.getElementById('endHandle').style.left = endX + 'px';
+            document.getElementById('fill').style.left = startX + 'px';
+            document.getElementById('fill').style.width = (endX - startX) + 'px';
+            document.getElementById('startDisplay').textContent = formatTime(startTime);
+            document.getElementById('endDisplay').textContent = formatTime(endTime);
+            document.getElementById('durationDisplay').textContent = formatTime(endTime - startTime);
+        }
+
+        function setupDrag(handleId, type) {
+            const handle = document.getElementById(handleId);
+            const onMove = (clientX) => {
+                const track = document.getElementById('track');
+                const rect = track.getBoundingClientRect();
+                let x = clientX - rect.left;
+                x = Math.max(0, Math.min(x, track.offsetWidth));
+                const time = Math.round((x / track.offsetWidth) * videoDuration);
+                if (type === 'start' && time < endTime - 5) startTime = time;
+                if (type === 'end' && time > startTime + 5) endTime = time;
+                updateSlider();
+            };
+            handle.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                const move = (e) => onMove(e.clientX);
+                document.addEventListener('mousemove', move);
+                document.addEventListener('mouseup', () => document.removeEventListener('mousemove', move), { once: true });
+            });
+            handle.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const move = (e) => onMove(e.touches[0].clientX);
+                document.addEventListener('touchmove', move);
+                document.addEventListener('touchend', () => document.removeEventListener('touchmove', move), { once: true });
+            });
+        }
+
+        setupDrag('startHandle', 'start');
+        setupDrag('endHandle', 'end');
+        updateSlider();
 
         function extractClip() {
             const title = document.getElementById('clipTitle').value || 'My Clip';
             const speed = document.getElementById('clipSpeed').value;
             const format = document.getElementById('clipFormat').value;
             const color = document.getElementById('clipColor').value;
-            alert(`✅ Clip "${title}" ready!\nFrom ${formatTime(startTime)} to ${formatTime(endTime)}\nSpeed: ${speed}x | Format: ${format} | Filter: ${color}`);
+            alert(`✅ Clip "${title}" ready!\nFrom ${formatTime(startTime)} to ${formatTime(endTime)}\nDuration: ${formatTime(endTime-startTime)}\nSpeed: ${speed}x | Format: ${format} | Filter: ${color}`);
         }
     </script>
 
